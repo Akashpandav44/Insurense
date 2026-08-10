@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,14 @@ public class CustomerController {
 		return ResponseEntity.ok(response);
 		
 		
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<CustomerResponseDto> updateData(@PathVariable Long id, @RequestBody CustomerRequestDto dto) {
+		
+		CustomerResponseDto response=service.updateData(id,dto);
+		
+		return ResponseEntity.ok(response);
 	}
 
 }

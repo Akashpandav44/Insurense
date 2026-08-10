@@ -88,4 +88,50 @@ public class CustomerServiceImp implements CustomerService {
 		return response;
 	}
 
+	@Override
+	public CustomerResponseDto updateData(Long id, CustomerRequestDto dto) {
+		
+		Customer customer=repository.findById(id).orElseThrow(
+				() -> new CustomerNotFoundException("Customer Not Found "));
+		
+		
+		customer.setCustomerId(dto.getCustomerId());
+		customer.setFirstName(dto.getFirstName());
+		customer.setLastName(dto.getLastName());
+		customer.setEmail(dto.getEmail());
+		customer.setMobile(dto.getMobile());
+		customer.setDateOfBirth(dto.getDateOfBirth());
+		customer.setGender(dto.getGender());
+		customer.setAddress(dto.getAddress());
+		customer.setCity(dto.getCity());
+		customer.setState(dto.getState());
+		customer.setPincode(dto.getPincode());
+		customer.setStatus(dto.getStatus());
+		customer.setCreatedDate(dto.getCreatedDate());
+		customer.setUpdatedDate(dto.getUpdatedDate());
+		
+		Customer save=repository.save(customer);
+		
+		CustomerResponseDto update=new CustomerResponseDto();
+		
+		update.setCustomerId(save.getCustomerId());
+		update.setFirstName(save.getFirstName());
+		update.setLastName(save.getLastName());
+		update.setEmail(save.getEmail());
+		update.setMobile(save.getMobile());
+		update.setDateOfBirth(save.getDateOfBirth());
+		update.setGender(save.getGender());
+		update.setAddress(save.getAddress());
+		update.setCity(save.getCity());
+		update.setState(save.getState());
+		update.setPincode(save.getPincode());
+		update.setStatus(save.getStatus());
+		update.setCreatedDate(save.getCreatedDate());
+		update.setUpdatedDate(save.getUpdatedDate());
+		
+		return update;
+		
+		
+	}
+
 }

@@ -9,4 +9,6 @@ public interface CustomerService {
 
 	CustomerResponseDto FindById(Long id);
 
+	CustomerResponseDto updateData(Long id, CustomerRequestDto dto);
+
 }
