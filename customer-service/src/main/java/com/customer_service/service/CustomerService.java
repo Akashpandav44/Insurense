@@ -11,4 +11,8 @@ public interface CustomerService {
 
 	CustomerResponseDto updateData(Long id, CustomerRequestDto dto);
 
+	CustomerResponseDto findCustomer(String customerId);
+
+	CustomerResponseDto delete(String customerId);
+
 }

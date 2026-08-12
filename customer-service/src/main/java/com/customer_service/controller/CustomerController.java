@@ -2,6 +2,7 @@ package com.customer_service.controller;
 
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class CustomerController {
 		
 		return  ResponseEntity.ok(customer);
 	}
-	@GetMapping("/{id}")
+	@GetMapping("/id/{id}")
 	public ResponseEntity<CustomerResponseDto> findData(@PathVariable Long id){
 		
 		CustomerResponseDto response=service.FindById(id);
@@ -47,6 +48,21 @@ public class CustomerController {
 		CustomerResponseDto response=service.updateData(id,dto);
 		
 		return ResponseEntity.ok(response);
+	}
+	
+	@GetMapping("/{customerId}")
+	public ResponseEntity<CustomerResponseDto> findCustomer(@PathVariable String customerId){
+		
+		CustomerResponseDto find=service.findCustomer(customerId);
+		
+		return ResponseEntity.ok(find);
+	}
+	@DeleteMapping("/{customerId}")
+	public ResponseEntity<CustomerResponseDto> softDelete(@PathVariable String customerId){
+		
+		CustomerResponseDto find=service.delete(customerId);
+		
+		return ResponseEntity.ok(find);
 	}
 
 }

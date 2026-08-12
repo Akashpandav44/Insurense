@@ -81,17 +81,11 @@ public class NomineeServiceImp implements NomineeService{
 	}
 
 	@Override
-	public NomineeResponseDto finddata(String customerId, Long id) {
+	public NomineeResponseDto finddata(String nomineeId) {
 		
-		Customer customer=customerRepo.findByCustomerId(customerId).orElseThrow(
-				() -> new CustomerNotFoundException("Customer Not Found "+customerId));
-		
-		 Nominee nominee =repository.findByIdAndCustomerCustomerId(id , customerId).orElseThrow(
-				 () -> new NomineeNotFoundException("Nominee Not Found"));
+		 Nominee nominee =repository.findByNomineeId(nomineeId).orElseThrow(
+				 () -> new NomineeNotFoundException(nomineeId+ " This Id Not Avialable in Nominee Table "));
 				 
-
-		  
-
 		    return new NomineeResponseDto(
 		            nominee.getCustomer().getCustomerId(),
 		            nominee.getNomineeId(),

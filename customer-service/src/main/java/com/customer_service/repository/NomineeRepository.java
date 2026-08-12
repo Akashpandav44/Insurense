@@ -16,4 +16,7 @@ public interface NomineeRepository extends JpaRepository<Nominee, Long> {
 
 	Optional<Nominee> findByIdAndCustomerCustomerId(Long id, String customerId);
 
+	Optional<Nominee> findByNomineeId(String nomineeId);
+
+
 }
