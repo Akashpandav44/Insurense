@@ -32,10 +32,10 @@ public class NomineeController {
 		
 		return ResponseEntity.ok(nominee);
 	}
-	@GetMapping("/{customerId}/id/{id}")
-	public ResponseEntity<NomineeResponseDto> find(@PathVariable String customerId ,  @PathVariable Long id ){
+	@GetMapping("/{nomineeId}")
+	public ResponseEntity<NomineeResponseDto> find(@PathVariable String nomineeId){
 		
-		NomineeResponseDto nominee=service.finddata(customerId, id);
+		NomineeResponseDto nominee=service.finddata(nomineeId);
 		
 		return ResponseEntity.ok(nominee);
 	}

@@ -1,5 +1,7 @@
 package com.customer_service.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 
 import com.customer_service.dto.CustomerRequestDto;
@@ -132,6 +134,32 @@ public class CustomerServiceImp implements CustomerService {
 		return update;
 		
 		
+	}
+
+	@Override
+	public CustomerResponseDto findCustomer(String customerId) {
+		
+		Customer customer=repository.findByCustomerId(customerId).orElseThrow(() -> 
+		new CustomerNotFoundException("Customer Not Found"));
+		
+		CustomerResponseDto dto=new CustomerResponseDto();
+		
+		dto.setCustomerId(customer.getCustomerId());
+		return dto;
+	}
+
+	@Override
+	public CustomerResponseDto delete(String customerId) {
+		
+		Customer customer=repository.findByCustomerId(customerId).orElseThrow(
+				() -> new CustomerNotFoundException("Customer Not Found "));
+		
+		CustomerResponseDto dto=new CustomerResponseDto();
+		
+		dto.setStatus("DELETED");
+		dto.setUpdatedDate(LocalDateTime.now());
+		
+		return dto;
 	}
 
 }

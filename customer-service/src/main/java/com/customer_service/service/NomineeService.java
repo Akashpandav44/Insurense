@@ -8,9 +8,7 @@ public interface NomineeService {
 
 	public Nominee create(String customerId, NomineeDto dto);
 
-	
-
-	NomineeResponseDto finddata(String customerId, Long id);
+	NomineeResponseDto finddata(String policyId);
 
 	
 
