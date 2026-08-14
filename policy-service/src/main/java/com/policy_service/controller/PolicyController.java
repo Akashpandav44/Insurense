@@ -1,6 +1,7 @@
 package com.policy_service.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,6 +47,13 @@ public class PolicyController {
 		PolicyEntity entity=service.update(policyId, dto);
 		
 		return ResponseEntity.ok(entity);
+	}
+	@DeleteMapping("/{policyId}")
+	public ResponseEntity<PolicyEntity> deletePolicy(@PathVariable String policyId) {
+		
+		PolicyEntity dto=service.delete(policyId);
+		
+		return ResponseEntity.ok(dto);
 	}
 
 }

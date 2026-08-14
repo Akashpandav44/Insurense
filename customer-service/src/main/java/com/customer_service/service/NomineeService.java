@@ -10,6 +10,8 @@ public interface NomineeService {
 
 	NomineeResponseDto finddata(String policyId);
 
+	Nominee update(String nomineeId, NomineeDto dto);
+
 	
 
 }

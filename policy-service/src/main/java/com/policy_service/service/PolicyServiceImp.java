@@ -1,5 +1,7 @@
 package com.policy_service.service;
 
+import java.time.LocalDateTime;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -86,6 +88,17 @@ public class PolicyServiceImp implements PolicyService{
 		entity.setUpdatedDate(dto.updatedDate());
 		
 		return repository.save(entity);
+	}
+
+	@Override
+	public PolicyEntity delete(String policyId) {
+		
+		PolicyEntity entity=repository.findByPolicyId(policyId).orElseThrow(
+				() -> new PolicyIdNotFoundException("PolicyId Not available "));
+		
+		entity.setStatus("DELETED");
+		entity.setUpdatedDate(LocalDateTime.now());
+		return entity;
 	}
 
 }
