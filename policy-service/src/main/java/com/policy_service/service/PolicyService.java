@@ -13,4 +13,6 @@ public interface PolicyService {
 
 	PolicyEntity update(String policyId, PolicyResponseDto dto);
 
+	PolicyEntity delete(String policyId);
+
 }

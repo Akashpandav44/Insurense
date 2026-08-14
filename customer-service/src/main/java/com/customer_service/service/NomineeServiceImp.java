@@ -96,6 +96,30 @@ public class NomineeServiceImp implements NomineeService{
 		    );
 	}
 
+	@Override
+	public Nominee update(String nomineeId, NomineeDto dto) {
+		
+		
+		Nominee nominee=repository.findByNomineeId(nomineeId).orElseThrow(
+				() -> new NomineeNotFoundException("Nominee Not Available"));
+		
+	    nominee.setNomineeName(dto.nomineeName());
+	    nominee.setRelationship(dto.relationship());
+	    nominee.setMobile(dto.mobile());
+	    nominee.setPercentage(dto.percentage());
+		
+		return repository.save(nominee);
+	}
+
+	public Nominee delete(String nomineeId) {
+		
+		Nominee nominee=repository.findByNomineeId(nomineeId).orElseThrow(
+				() -> new NomineeNotFoundException("Nominee Not Available "));
+		
+		
+		return nominee;
+	}
+
 
 
 }

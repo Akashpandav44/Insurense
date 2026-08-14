@@ -4,9 +4,11 @@ package com.customer_service.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +38,21 @@ public class NomineeController {
 	public ResponseEntity<NomineeResponseDto> find(@PathVariable String nomineeId){
 		
 		NomineeResponseDto nominee=service.finddata(nomineeId);
+		
+		return ResponseEntity.ok(nominee);
+	}
+	
+	@PutMapping("/{nomineeId}")
+	public ResponseEntity<Nominee> update(@RequestBody NomineeDto dto, @PathVariable String nomineeId){
+		
+		Nominee nominee=service.update(nomineeId, dto);
+		
+		return ResponseEntity.ok(nominee);
+	}
+	@DeleteMapping("/{nomineeId}")
+	public ResponseEntity<Nominee> softDelete(@PathVariable String nomineeId){
+		
+		Nominee nominee=service.delete(nomineeId);
 		
 		return ResponseEntity.ok(nominee);
 	}
