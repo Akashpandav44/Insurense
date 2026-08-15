@@ -21,6 +21,18 @@ public class GlobalException {
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
+	
+	@ExceptionHandler(PaymentDetailsNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handlePaymentDetailsNotFound(PaymentDetailsNotFoundException ex){
+		
+		ErrorResponse error=new ErrorResponse();
+		
+		error.setMessage(ex.getMessage());
+		error.setCode(HttpStatus.NOT_FOUND.value());
+		error.setLocalDate(LocalDateTime.now());
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> handleException(Exception ex) {
