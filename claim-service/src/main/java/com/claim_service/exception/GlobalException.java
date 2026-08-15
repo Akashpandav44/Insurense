@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalException {
 
 	
-	@ExceptionHandler(NotFoundException.class)
-	public ResponseEntity<ErrorResponse> handleNotFoundException(NotFoundException ex){
+	@ExceptionHandler(ClaimIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleNotFoundException(ClaimIdNotFoundException ex){
 		
 		ErrorResponse error=new ErrorResponse();
 		
@@ -22,6 +22,30 @@ public class GlobalException {
 		
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
 	}
+	@ExceptionHandler(CustomerIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleCustomerIdNotFound(CustomerIdNotFoundException ex){
+		
+		ErrorResponse error=new ErrorResponse();
+		
+		error.setMessage(ex.getMessage());
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setTimestamp(LocalDateTime.now());
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+		
+	}
+	@ExceptionHandler(PolicyIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handlePolicyIdNotFound(PolicyIdNotFoundException ex){
+		
+		ErrorResponse error=new ErrorResponse();
+		
+		error.setMessage(ex.getMessage());
+		error.setStatus(HttpStatus.NOT_FOUND.value());
+		error.setTimestamp(LocalDateTime.now());
+		
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> handleException(Exception ex){
 		
